@@ -12,6 +12,8 @@ const storage = multer.diskStorage({
           ext ='.jpg';
       } else if (file.mimetype === 'image/png') {
           ext = '.png';
+      } else if (file.mimetype === 'image/gif') {
+          ext = '.gif';
       }
       cb(null, shortid.generate() + ext);
   }
@@ -20,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({ 
   storage,
   fileFilter: (req, file, cb) => {
-      if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
           cb(null, true);
       } else {
           cb(null, false);
