@@ -1,51 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const shortid = require('shortid');
-const multer  = require('multer');
-const fs = require('fs').promises;
-require('dotenv').config()
+require('dotenv').config();
 
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.resolve(__dirname, './images'));
-    },
-    filename: function(req, file, cb) {
-        cb(null, shortid.generate() + path.extname(file.originalname));
-    }
-});
-
-const upload = multer({ 
-    storage,
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
-            cb(null, true);
-        } else {
-            cb(null, false);
-        }
-    }, 
-});
+const { upload } = require('./util/multer');
+const removeExif = require('./util/removExif');
+const emptyDir = require('./util/emptyDir');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const emptyDir = async (directory, currentFile) => {
-    const files = await fs.readdir(directory);
-    if(files.length < 4) {
-        return;
-    }
-    for(let i = 0; i < files.length; i++) {
-        if (files[i] === currentFile) {
-            continue;
-        } else {
-            await fs.unlink(path.join(directory, files[i]));
-        }
-    } 
-}
 
 app.post('/api/upload-image', upload.single('image'), async (req, res, next) => {
   try {
@@ -56,6 +22,9 @@ app.post('/api/upload-image', upload.single('image'), async (req, res, next) => 
               data: 'Only image files are allowed!'
           });
       } else {
+          if (image.mimetype === 'image/jpeg') {
+            removeExif(`${__dirname}/images/${image.filename}`, `${__dirname}/images/${image.filename}`);
+          }
           await emptyDir(path.resolve(__dirname, './images'), image.filename);
           res.send({
               status: true,
@@ -72,8 +41,12 @@ app.post('/api/upload-image', upload.single('image'), async (req, res, next) => 
   }
 });
 
-app.get('/images/:name', (req, res) => {
+app.get('/images/:name', async (req, res) => {
     res.sendFile(`${__dirname}/images/${req.params.name}`);
+});
+
+app.use((err, req, res) => {
+    res.status(500).end();
 });
 
 const port = process.env.PORT || 3000;
