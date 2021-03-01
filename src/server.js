@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const { upload } = require('./util/multer');
-const removeExif = require('./util/removExif');
+const removeExif = require('./util/removeExif');
 const emptyDir = require('./util/emptyDir');
 
 const app = express();
@@ -19,7 +19,7 @@ app.post('/api/upload-image', upload.single('image'), async (req, res, next) => 
       if (!image) {
           res.status(400).send({
               status: false,
-              data: 'Only image files are allowed!'
+              message: 'Only image files are allowed!'
           });
       } else {
           if (image.mimetype === 'image/jpeg') {
@@ -41,12 +41,8 @@ app.post('/api/upload-image', upload.single('image'), async (req, res, next) => 
   }
 });
 
-app.get('/images/:name', async (req, res) => {
+app.get('/api/images/:name', async (req, res) => {
     res.sendFile(`${__dirname}/images/${req.params.name}`);
-});
-
-app.use((err, req, res) => {
-    res.status(500).end();
 });
 
 const port = process.env.PORT || 3000;
