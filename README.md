@@ -1,6 +1,6 @@
 # DC Image Uploader API
 
-An application to upload images. Complementary to [dc-image-uploader](https://github.com/sukcinitas/dc-image-uploader).
+An application to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader).
 
 ---
 
@@ -69,3 +69,7 @@ An application to upload images. Complementary to [dc-image-uploader](https://gi
     </td>
   </tr>
 </table>
+
+## Notes
+
+ - This is created only for learning purposes. Only 3 image files are stored at a time.
