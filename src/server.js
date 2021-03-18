@@ -14,35 +14,43 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/api/upload-image', upload.single('image'), async (req, res, next) => {
-  try {
-      const image = req.file;
-      if (!image) {
-          res.status(400).send({
-              status: false,
-              message: 'Only image files are allowed!'
-          });
-      } else {
-          if (image.mimetype === 'image/jpeg') {
-            removeExif(`${__dirname}/images/${image.filename}`, `${__dirname}/images/${image.filename}`);
-          }
-          await emptyDir(path.resolve(__dirname, './images'), image.filename);
-          res.send({
-              status: true,
-              message: 'File is uploaded.',
-              data: {
-                  filename: image.filename,
-                  mimetype: image.mimetype,
-                  size: image.size
-              }
-          });
-      }
-  } catch (err) {
-      res.status(500).send(err);
-  }
+    try {
+        const image = req.file;
+        if (!image) {
+            res.status(400).json({
+                status: false,
+                message: 'Only image files are allowed!'
+            });
+        } else {
+            if (image.mimetype === 'image/jpeg') {
+                removeExif(`${__dirname}/images/${image.filename}`, `${__dirname}/images/${image.filename}`);
+            }
+            await emptyDir(path.resolve(__dirname, './images'), image.filename);
+            res.json({
+                status: true,
+                message: 'File is uploaded.',
+                data: {
+                    filename: image.filename,
+                    mimetype: image.mimetype,
+                    size: image.size
+                }
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ status: false, err });
+    }
 });
 
 app.get('/api/images/:name', async (req, res) => {
-    res.sendFile(`${__dirname}/images/${req.params.name}`);
+    const options = {
+        root: path.join(__dirname, 'images'),
+    }
+    const fileName = req.params.name;
+    res.sendFile(fileName, options, (err) => {
+        if (err) {
+            res.status(err.statusCode).json({ status: false, err });
+        }
+    });
 });
 
 const port = process.env.PORT || 3000;
