@@ -1,6 +1,8 @@
 # DC Image Uploader API
 
-An api to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check working application example [here](https://imago-uploader.netlify.app/).
+An api to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check application example [here](https://imago-uploader.netlify.app/).
+
+![](https://github.com/sukcinitas/media/blob/master/img-uploader/img-uploader.gif)
 
 #### Notes
 
