@@ -9,7 +9,9 @@ const emptyDir = require('./util/emptyDir');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' ? 'https://imago-uploader.netlify.app' : 'http://localhost:8080',
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
