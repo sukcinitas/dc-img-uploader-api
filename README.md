@@ -1,13 +1,13 @@
 # DC Image Uploader API
 
-An api to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://imago-uploader.netlify.app/) and you can try the api [https://boiling-citadel-16368.herokuapp.com/api](https://boiling-citadel-16368.herokuapp.com/api).
+An api to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://imago-uploader.netlify.app/) and you can try the api [https://power-sweet-archduke.glitch.me/api](https://power-sweet-archduke.glitch.me/api).
 
 ![](https://github.com/sukcinitas/media/blob/master/img-uploader/img-uploader.gif)
 
 #### Notes
 
- - This is created only for learning purposes. Only 3 image files are stored at a time.
- - More information: [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader).
+- This is created only for learning purposes. Only 3 image files are stored at a time.
+- More information: [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader).
 
 ---
 
