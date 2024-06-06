@@ -1,6 +1,6 @@
-const multer = require("multer");
-const shortid = require("shortid");
-const path = require("path");
+import multer from "multer";
+import shortid from "shortid";
+import path from "path";
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
@@ -34,6 +34,4 @@ const upload = multer({
   },
 });
 
-module.exports = {
-  upload,
-};
+export { upload };
