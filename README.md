@@ -1,12 +1,12 @@
 # DC Image Uploader API
 
-An api to upload images. Complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://imago-uploader.netlify.app/) and you can try the api [https://power-sweet-archduke.glitch.me/api](https://power-sweet-archduke.glitch.me/api).
+An api for image upload, complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://metaless-upload.netlify.app/) or you can try out the api yourself [https://power-sweet-archduke.glitch.me/api](https://power-sweet-archduke.glitch.me/api).
 
 ![](https://github.com/sukcinitas/media/blob/master/img-uploader/img-uploader.gif)
 
 #### Notes
 
-- This is created only for learning purposes. Only 3 image files are stored at a time.
+- Only 3 image files are stored at a time as this app is created only for learning purposes.
 - More information: [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader).
 
 ---
@@ -14,6 +14,7 @@ An api to upload images. Complementary to [dc-img-uploader](https://github.com/s
 ## Built with
 
 - Express 4
+- Multer 1
 - Piexifjs 1
 
 ---
@@ -71,6 +72,9 @@ An api to upload images. Complementary to [dc-img-uploader](https://github.com/s
       Success response: 
       <ul>
           <li><code>200</code> <code><em>image file</em></code></li>
+      </ul>
+      Error response:
+        <ul>
           <li><code>404</code> <code>{ status: false, err: <em>error message</em> }</code></li>
       </ul>
     </td>
