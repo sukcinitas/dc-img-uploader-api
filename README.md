@@ -13,6 +13,7 @@ An api for image upload, complementary to [dc-img-uploader](https://github.com/s
 
 ## Built with
 
+- TypeScript
 - Express 4
 - Multer 1
 - Piexifjs 1
