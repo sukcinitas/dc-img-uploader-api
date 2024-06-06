@@ -1,6 +1,6 @@
 # DC Image Uploader API
 
-An api for image upload, complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://metaless-upload.netlify.app/) or you can try out the api yourself [https://power-sweet-archduke.glitch.me/api](https://power-sweet-archduke.glitch.me/api).
+An api for image upload, complementary to [dc-img-uploader](https://github.com/sukcinitas/dc-img-uploader). You can check the application example [here](https://metaless-upload.netlify.app/) or you can try out the api yourself [https://dc-img-uploader-api.onrender.com/](https://dc-img-uploader-api.onrender.com/).
 
 ![](https://github.com/sukcinitas/media/blob/master/img-uploader/img-uploader.gif)
 
