@@ -3,7 +3,7 @@ const piexif = require("piexifjs");
 
 const TYPE = "binary";
 
-module.exports = (fromFile, toFile) => {
+export default function removeExif(fromFile: string, toFile: string) {
   const newData = piexif.remove(fs.readFileSync(fromFile).toString(TYPE));
   fs.writeFileSync(toFile, Buffer.from(newData, TYPE));
-};
+}

@@ -1,7 +1,7 @@
-const fs = require("fs").promises;
-const path = require("path");
+import { promises as fs } from "fs";
+import path from "path";
 
-const emptyDir = async (directory, currentFile) => {
+const emptyDir = async (directory: string, currentFile: string) => {
   const files = await fs.readdir(directory);
   if (files.length < 5) {
     return;
@@ -15,4 +15,4 @@ const emptyDir = async (directory, currentFile) => {
   }
 };
 
-module.exports = emptyDir;
+export default emptyDir;
